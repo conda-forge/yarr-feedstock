@@ -1,5 +1,5 @@
 {% set name = "yarr" %}
-{% set version = "1.5.2" %}
+{% set version = "1.5.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,8 @@ package:
 
 source:
   url: https://gitlab.cern.ch/yarr/{{ name }}/-/archive/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
-  sha256: 56dd0a42f5260470239f76b89aad016913e8267fbf3e10227abf1797618de18d
+  sha256: b3f72d4a469754be92d73487f3d6bdf1b573bffe5a26acb4d0d884db84da1bf6
   patches:
-    - patches/0001-yarr_873.patch
     - patches/0002-patch-strip-debug.patch
     - patches/0003-patch-dependency-resolution-for-osx.patch
 
