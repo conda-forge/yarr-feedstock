@@ -13,7 +13,7 @@ source:
     - patches/0003-patch-dependency-resolution-for-osx.patch
 
 build:
-  skip: true  # [win]
+  skip: true  # [win, osx]
   script:
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -S "${SRC_DIR}" -B build  # [osx]
     - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -S "${SRC_DIR}" -B build  # [linux]
