@@ -18,7 +18,6 @@ from the FPGA firmware into the host computer software. The role of the FPGA is
 the one of a reconfigurable I/O interface and not anymore the one of a hardware
 accelerator. YARR supports multiple types of FPGA platforms and readout chips.
 
-
 Current build status
 ====================
 
@@ -41,13 +40,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=24883&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yarr-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=24883&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yarr-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr>
