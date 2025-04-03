@@ -15,6 +15,10 @@ source:
     - patches/0002-patch-strip-debug.patch
     - patches/0003-patch-dependency-resolution-for-osx.patch
 
+bot:
+  sources:
+    - rawurl
+
 build:
   number: 0
   script:
