@@ -15,12 +15,8 @@ source:
     - patches/0002-patch-strip-debug.patch
     - patches/0003-patch-dependency-resolution-for-osx.patch
 
-bot:
-  sources:
-    - rawurl
-
 build:
-  number: 1
+  number: 0
   script:
     - if: osx
       then: CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -S "${SRC_DIR}" -B build
