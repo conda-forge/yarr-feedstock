@@ -7,5 +7,6 @@ conda_install_tool: pixi
 conda_build_tool: rattler-build
 conda_forge_output_validation: true
 bot:
-  sources:
-    - rawurl
+  version_updates:
+    sources:
+      - rawurl
