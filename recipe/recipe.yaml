@@ -20,7 +20,7 @@ bot:
     - rawurl
 
 build:
-  number: 0
+  number: 1
   script:
     - if: osx
       then: CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -S "${SRC_DIR}" -B build
