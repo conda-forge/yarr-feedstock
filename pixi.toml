@@ -7,7 +7,7 @@
 
 [project]
 name = "yarr-feedstock"
-version = "3.47.1"  # conda-smithy version used to generate this file
+version = "3.50.0"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/yarr-feedstock"
 authors = ["@conda-forge/yarr"]
 channels = ["conda-forge"]
