@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: yarr
-  version: "1.5.6"
+  version: "1.6.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,11 @@ package:
 
 source:
   url: https://gitlab.cern.ch/yarr/${{ name }}/-/archive/v${{ version }}/${{ name }}-v${{ version }}.tar.gz
-  sha256: 1014c9dd0a419ef77de1a08398c85fef69d0e6357615c9e607351783e6b504d0
+  sha256: ec9d22b025928bb17e127e9100c63895f835fc6961e4c9a3cc1edaa62b93296f
   patches:
     - patches/0002-patch-strip-debug.patch
     - patches/0003-patch-dependency-resolution-for-osx.patch
+    - patches/0004-patch-use-invoke-result-for-cxx20.patch
 
 build:
   number: 0
@@ -30,7 +31,6 @@ build:
     - cat $PREFIX/share/yarr/configs/controller/emuCfg_rd53a.json
   skip:
     - win
-    - osx
 
 requirements:
   build:
