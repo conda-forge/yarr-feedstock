@@ -5,7 +5,7 @@
 
 [workspace]
 name = "yarr-feedstock"
-version = "3.54.2"  # conda-smithy version used to generate this file
+version = "2026.5.29"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/yarr-feedstock"
 authors = ["@conda-forge/yarr"]
 channels = ["conda-forge"]
@@ -13,7 +13,7 @@ platforms = ["linux-64", "osx-64", "win-64"]
 requires-pixi = ">=0.59.0"
 
 [dependencies]
-conda-build = ">=24.1"
+conda-build = ">=26.3"
 conda-forge-ci-setup = "4.*"
 rattler-build = "*"
 
@@ -29,6 +29,12 @@ description = "Build yarr-feedstock with variant linux_64_ directly (without set
 [tasks."inspect-linux_64_"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_.yaml"
 description = "List contents of yarr-feedstock packages built for variant linux_64_"
+[tasks."build-osx_64_"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_.yaml"
+description = "Build yarr-feedstock with variant osx_64_ directly (without setup scripts)"
+[tasks."inspect-osx_64_"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_.yaml"
+description = "List contents of yarr-feedstock packages built for variant osx_64_"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"
