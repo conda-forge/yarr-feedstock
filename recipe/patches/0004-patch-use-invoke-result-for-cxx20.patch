@@ -1,0 +1,38 @@
+From 250666d66c1f4576fbd9f8aaf0f10a27fc3fcacf Mon Sep 17 00:00:00 2001
+From: Giordon Stark <kratsg@gmail.com>
+Date: Thu, 11 Jun 2026 15:59:22 -0700
+Subject: [PATCH] [PATCH] use std::invoke_result instead of removed
+ std::result_of
+
+---
+ src/libYarr/include/ThreadPool.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/libYarr/include/ThreadPool.h b/src/libYarr/include/ThreadPool.h
+index 4d3e049..d223fa8 100755
+--- a/src/libYarr/include/ThreadPool.h
++++ b/src/libYarr/include/ThreadPool.h
+@@ -16,7 +16,7 @@ public:
+     ThreadPool(size_t);
+     template<class F, class... Args>
+     auto enqueue(F&& f, Args&&... args) 
+-        -> std::future<typename std::result_of<F(Args...)>::type>;
++        -> std::future<typename std::invoke_result<F, Args...>::type>;
+     ~ThreadPool();
+     inline size_t taskSize() {
+         std::unique_lock<std::mutex> lock(this->queue_mutex);
+@@ -65,9 +65,9 @@ inline ThreadPool::ThreadPool(size_t threads)
+ // add new work item to the pool
+ template<class F, class... Args>
+ auto ThreadPool::enqueue(F&& f, Args&&... args) 
+-    -> std::future<typename std::result_of<F(Args...)>::type>
++    -> std::future<typename std::invoke_result<F, Args...>::type>
+ {
+-    using return_type = typename std::result_of<F(Args...)>::type;
++    using return_type = typename std::invoke_result<F, Args...>::type;
+ 
+     auto task = std::make_shared< std::packaged_task<return_type()> >(
+             std::bind(std::forward<F>(f), std::forward<Args>(args)...)
+-- 
+2.45.2
+
