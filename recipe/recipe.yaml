@@ -13,6 +13,7 @@ source:
   sha256: c01a0b6ef139885aca054916d508e78ebc58d31a59f7f5fb999d35e2bd87f441
   patches:
     - patches/0001-patch-use-external-fmt-headers.patch
+    - patches/0002-patch-strip-debug.patch
 
 build:
   number: 0

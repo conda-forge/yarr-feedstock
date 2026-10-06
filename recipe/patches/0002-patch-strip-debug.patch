@@ -1,0 +1,51 @@
+From e7e2386fd4a06d929fa2f7aa45f44f868b8bc468 Mon Sep 17 00:00:00 2001
+From: Mike Hance <mhance@gmail.com>
+Date: Tue, 6 Oct 2026 15:22:15 -0700
+Subject: [PATCH] strip debug for osx
+
+---
+ cmake/SupportFunctionsLibrary.cmake | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/cmake/SupportFunctionsLibrary.cmake b/cmake/SupportFunctionsLibrary.cmake
+index 25c2e2d..a16911e 100644
+--- a/cmake/SupportFunctionsLibrary.cmake
++++ b/cmake/SupportFunctionsLibrary.cmake
+@@ -88,6 +88,16 @@ function(detect_in_tdaq_install OUT_VAR)
+     endif()
+ endfunction()
+ 
++if(APPLE)
++  # macOS strip (cctools) does not understand GNU binutils flags; -S strips debug
++  # symbols and there is no --strip-unneeded equivalent.
++  set(STRIP_DEBUG_OPTION -S)
++  set(STRIP_UNNEEDED_OPTION "")
++else()
++  set(STRIP_DEBUG_OPTION --strip-debug)
++  set(STRIP_UNNEEDED_OPTION --strip-unneeded)
++endif()
++
+ # debug symbol stripping ---------------------------------------------------------------------------------------
+ # Splitting debug info into a separate file via objcopy/strip's --add-gnu-debuglink is a GNU
+ # binutils / ELF specific mechanism. It doesn't apply on macOS (Mach-O, no objcopy), so skip it there.
+@@ -106,7 +116,7 @@ function(post_build_debug_library name)
+   add_custom_command(TARGET ${name}
+     POST_BUILD
+     COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:${name}> ${CMAKE_CURRENT_BINARY_DIR}/${our_debug_name}
+-    COMMAND ${CMAKE_STRIP} --strip-debug --strip-unneeded $<TARGET_FILE:${name}>
++    COMMAND ${CMAKE_STRIP} ${STRIP_DEBUG_OPTION} ${STRIP_UNNEEDED_OPTION} $<TARGET_FILE:${name}>
+     COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=${our_debug_name} $<TARGET_FILE:${name}>
+   )
+ 
+@@ -130,7 +140,7 @@ function(post_build_debug_executable name)
+   add_custom_command(TARGET ${name}
+     POST_BUILD
+     COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:${name}> ${CMAKE_CURRENT_BINARY_DIR}/${our_debug_name}
+-    COMMAND ${CMAKE_STRIP} --strip-debug --strip-unneeded $<TARGET_FILE:${name}>
++    COMMAND ${CMAKE_STRIP} ${STRIP_DEBUG_OPTION} ${STRIP_UNNEEDED_OPTION} $<TARGET_FILE:${name}>
+     COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=${our_debug_name} $<TARGET_FILE:${name}>
+   )
+ 
+-- 
+2.51.0
+
