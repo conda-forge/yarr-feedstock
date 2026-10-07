@@ -1,0 +1,179 @@
+From 0b2438c79b9a161e9418f2668ff662e189fc1101 Mon Sep 17 00:00:00 2001
+From: Mike Hance <mhance@gmail.com>
+Date: Tue, 6 Oct 2026 15:00:25 -0700
+Subject: [PATCH] use external fmt headers instead of spdlog bundled
+
+---
+ src/libBdaq/Bdaq.cpp                           | 2 +-
+ src/libFelixClient/app/felix_client_bridge.cpp | 2 +-
+ src/libItkpixv2/app/Itkpixv2ColumnTest.cpp     | 2 +-
+ src/libRd53b/Rd53bAnalysis.cpp                 | 2 +-
+ src/libRd53b/app/rd53bColumnTest.cpp           | 2 +-
+ src/libRd53b/app/rd53bComTest.cpp              | 2 +-
+ src/libRd53b/app/rd53bRegSEETest.cpp           | 2 +-
+ src/libRd53b/app/rd53bTest.cpp                 | 2 +-
+ src/libStar/StarStrobeDelayAnalysis.cpp        | 2 +-
+ src/libYarr/ScanHelper.cpp                     | 2 +-
+ src/libYarr/StdAnalysis.cpp                    | 2 +-
+ src/libYarr/StdDataLoop.cpp                    | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/src/libBdaq/Bdaq.cpp b/src/libBdaq/Bdaq.cpp
+index 1bc2999..877110f 100644
+--- a/src/libBdaq/Bdaq.cpp
++++ b/src/libBdaq/Bdaq.cpp
+@@ -6,7 +6,7 @@
+ 
+ #include "Bdaq.h"
+ #include "logging.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ namespace {
+   auto logger = logging::make_log("Bdaq");
+diff --git a/src/libFelixClient/app/felix_client_bridge.cpp b/src/libFelixClient/app/felix_client_bridge.cpp
+index d601477..d9c1208 100644
+--- a/src/libFelixClient/app/felix_client_bridge.cpp
++++ b/src/libFelixClient/app/felix_client_bridge.cpp
+@@ -15,7 +15,7 @@
+ #include "ScanHelper.h"
+ #include "FelixTools.h"
+ 
+-#include "spdlog/fmt/bundled/ranges.h"
++#include <fmt/ranges.h>
+ 
+ #include "storage.hpp"
+ 
+diff --git a/src/libItkpixv2/app/Itkpixv2ColumnTest.cpp b/src/libItkpixv2/app/Itkpixv2ColumnTest.cpp
+index 113aab8..b12e525 100644
+--- a/src/libItkpixv2/app/Itkpixv2ColumnTest.cpp
++++ b/src/libItkpixv2/app/Itkpixv2ColumnTest.cpp
+@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
+ #include "storage.hpp"
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanHelper.h"
+ #include "HwController.h"
+diff --git a/src/libRd53b/Rd53bAnalysis.cpp b/src/libRd53b/Rd53bAnalysis.cpp
+index 1e4bcfe..87f0ace 100644
+--- a/src/libRd53b/Rd53bAnalysis.cpp
++++ b/src/libRd53b/Rd53bAnalysis.cpp
+@@ -12,7 +12,7 @@
+ #include "StdHistogrammer.h" // knowledge of other analyses/etc
+ #include "StdTriggerAction.h"
+ #include "logging.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ namespace {
+     auto logger = logging::make_log("Rd53bAnalysis");
+diff --git a/src/libRd53b/app/rd53bColumnTest.cpp b/src/libRd53b/app/rd53bColumnTest.cpp
+index c24380b..0ddeb9b 100644
+--- a/src/libRd53b/app/rd53bColumnTest.cpp
++++ b/src/libRd53b/app/rd53bColumnTest.cpp
+@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
+ #include "storage.hpp"
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanHelper.h"
+ #include "HwController.h"
+diff --git a/src/libRd53b/app/rd53bComTest.cpp b/src/libRd53b/app/rd53bComTest.cpp
+index e26c4fc..7726fe1 100644
+--- a/src/libRd53b/app/rd53bComTest.cpp
++++ b/src/libRd53b/app/rd53bComTest.cpp
+@@ -16,7 +16,7 @@
+ #include "storage.hpp"
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanHelper.h"
+ #include "Bookkeeper.h"
+diff --git a/src/libRd53b/app/rd53bRegSEETest.cpp b/src/libRd53b/app/rd53bRegSEETest.cpp
+index 924f7a0..c0c5c0b 100644
+--- a/src/libRd53b/app/rd53bRegSEETest.cpp
++++ b/src/libRd53b/app/rd53bRegSEETest.cpp
+@@ -11,7 +11,7 @@
+ #include "storage.hpp"
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanHelper.h"
+ #include "Bookkeeper.h"
+diff --git a/src/libRd53b/app/rd53bTest.cpp b/src/libRd53b/app/rd53bTest.cpp
+index ed8a891..606423d 100644
+--- a/src/libRd53b/app/rd53bTest.cpp
++++ b/src/libRd53b/app/rd53bTest.cpp
+@@ -15,7 +15,7 @@
+ #include "storage.hpp"
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanHelper.h"
+ #include "Bookkeeper.h"
+diff --git a/src/libStar/StarStrobeDelayAnalysis.cpp b/src/libStar/StarStrobeDelayAnalysis.cpp
+index 7eb7ce6..1d78efc 100644
+--- a/src/libStar/StarStrobeDelayAnalysis.cpp
++++ b/src/libStar/StarStrobeDelayAnalysis.cpp
+@@ -16,7 +16,7 @@
+ 
+ #include "lmcurve.h"
+ #include "logging.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ namespace {
+     auto alog = logging::make_log("StarStrobeDelayAnalysis");
+diff --git a/src/libYarr/ScanHelper.cpp b/src/libYarr/ScanHelper.cpp
+index 58218fc..933d0ce 100644
+--- a/src/libYarr/ScanHelper.cpp
++++ b/src/libYarr/ScanHelper.cpp
+@@ -32,7 +32,7 @@ namespace fs = std::filesystem;
+ 
+ #include "logging.h"
+ #include "LoggingConfig.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ #include "ScanOpts.h"
+ 
+diff --git a/src/libYarr/StdAnalysis.cpp b/src/libYarr/StdAnalysis.cpp
+index f6e63da..6a7228b 100644
+--- a/src/libYarr/StdAnalysis.cpp
++++ b/src/libYarr/StdAnalysis.cpp
+@@ -21,7 +21,7 @@
+ #include "lmcurve.h"
+ #include "scurvegauss.h"
+ #include "logging.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ namespace {
+     auto alog = logging::make_log("StdAnalysis");
+diff --git a/src/libYarr/StdDataLoop.cpp b/src/libYarr/StdDataLoop.cpp
+index 52ed473..537e503 100644
+--- a/src/libYarr/StdDataLoop.cpp
++++ b/src/libYarr/StdDataLoop.cpp
+@@ -18,7 +18,7 @@
+ #include "TxCore.h"
+ 
+ #include "logging.h"
+-#include "spdlog/fmt/bundled/color.h"
++#include <fmt/color.h>
+ 
+ using Clock = std::chrono::steady_clock;
+ 
+-- 
+2.51.0
+
