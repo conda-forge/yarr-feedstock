@@ -14,6 +14,7 @@ source:
   patches:
     - patches/0001-patch-use-external-fmt-headers.patch
     - patches/0002-patch-strip-debug.patch
+    - patches/0003-patch-madv-hugepage-fallback.patch
 
 build:
   number: 0
