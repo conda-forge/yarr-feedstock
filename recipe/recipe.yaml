@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: yarr
-  version: "1.6.3"
+  version: "1.6.6"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://gitlab.cern.ch/yarr/${{ name }}/-/archive/v${{ version }}/${{ name }}-v${{ version }}.tar.gz
-  sha256: c01a0b6ef139885aca054916d508e78ebc58d31a59f7f5fb999d35e2bd87f441
+  sha256: 1bd89ba2afa03e29f12ed0d05a65cf9c17ba55f1ffcb9dd8ce0e915f53cefc76
   patches:
     - patches/0001-patch-use-external-fmt-headers.patch
     - patches/0002-patch-strip-debug.patch
