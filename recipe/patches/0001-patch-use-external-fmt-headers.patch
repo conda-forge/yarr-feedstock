@@ -1,6 +1,6 @@
-From ff2732efd42bbaffcc81169b35ff10cf4b43c119 Mon Sep 17 00:00:00 2001
+From 622ad530eaeaebcc2a0ddaef3c8e5c7b367942c8 Mon Sep 17 00:00:00 2001
 From: Mike Hance <mhance@gmail.com>
-Date: Tue, 3 Nov 2026 13:45:58 -0800
+Date: Tue, 3 Nov 2026 13:36:45 -0800
 Subject: [PATCH] use external fmt headers instead of spdlog bundled
 
 ---
@@ -32,7 +32,7 @@ index 1bc2999..877110f 100644
  namespace {
    auto logger = logging::make_log("Bdaq");
 diff --git a/src/libFelixClient/app/felix_client_bridge.cpp b/src/libFelixClient/app/felix_client_bridge.cpp
-index 566797f..579371d 100644
+index abb1688..e9af451 100644
 --- a/src/libFelixClient/app/felix_client_bridge.cpp
 +++ b/src/libFelixClient/app/felix_client_bridge.cpp
 @@ -15,7 +15,7 @@
@@ -136,10 +136,10 @@ index 4c568c7..3da1f5e 100644
  namespace {
      auto alog = logging::make_log("StarStrobeDelayAnalysis");
 diff --git a/src/libYarr/ScanHelper.cpp b/src/libYarr/ScanHelper.cpp
-index 0b57d1f..94a2a2a 100644
+index ee307ca..8001a73 100644
 --- a/src/libYarr/ScanHelper.cpp
 +++ b/src/libYarr/ScanHelper.cpp
-@@ -33,7 +33,7 @@ namespace fs = std::filesystem;
+@@ -34,7 +34,7 @@ namespace fs = std::filesystem;
  
  #include "logging.h"
  #include "LoggingConfig.h"
