@@ -1,0 +1,52 @@
+From c6b0c9423a307885104d2f84e5001b86b5bfeece Mon Sep 17 00:00:00 2001
+From: Mike Hance <mhance@gmail.com>
+Date: Tue, 3 Nov 2026 14:37:38 -0800
+Subject: [PATCH] define MADV_HUGEPAGE/MADV_NOHUGEPAGE fallback for non-Linux
+ (osx)
+
+---
+ src/libSpec/app/specBenchmarkDma.cpp | 8 ++++++++
+ src/libSpec/app/specStressDma.cpp    | 8 ++++++++
+ 2 files changed, 16 insertions(+)
+
+diff --git a/src/libSpec/app/specBenchmarkDma.cpp b/src/libSpec/app/specBenchmarkDma.cpp
+index fe52890..f3e93d1 100644
+--- a/src/libSpec/app/specBenchmarkDma.cpp
++++ b/src/libSpec/app/specBenchmarkDma.cpp
+@@ -15,6 +15,14 @@
+ #include <string>
+ #include <vector>
+ #include <sys/mman.h>
++// MADV_HUGEPAGE / MADV_NOHUGEPAGE are Linux-specific (transparent hugepages);
++// fall back to MADV_NORMAL (0) on platforms that lack them, e.g. macOS.
++#ifndef MADV_HUGEPAGE
++#define MADV_HUGEPAGE 0
++#endif
++#ifndef MADV_NOHUGEPAGE
++#define MADV_NOHUGEPAGE 0
++#endif
+ #include <sys/time.h>
+ 
+ namespace {
+diff --git a/src/libSpec/app/specStressDma.cpp b/src/libSpec/app/specStressDma.cpp
+index ca122fe..6dc47a5 100644
+--- a/src/libSpec/app/specStressDma.cpp
++++ b/src/libSpec/app/specStressDma.cpp
+@@ -16,6 +16,14 @@
+ #include <random>
+ #include <sstream>
+ #include <sys/mman.h>
++// MADV_HUGEPAGE / MADV_NOHUGEPAGE are Linux-specific (transparent hugepages);
++// fall back to MADV_NORMAL (0) on platforms that lack them, e.g. macOS.
++#ifndef MADV_HUGEPAGE
++#define MADV_HUGEPAGE 0
++#endif
++#ifndef MADV_NOHUGEPAGE
++#define MADV_NOHUGEPAGE 0
++#endif
+ #include <thread>
+ #include <vector>
+ 
+-- 
+2.51.0
+
