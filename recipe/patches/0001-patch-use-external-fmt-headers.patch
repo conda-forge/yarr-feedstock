@@ -1,6 +1,6 @@
-From 0b2438c79b9a161e9418f2668ff662e189fc1101 Mon Sep 17 00:00:00 2001
+From ff2732efd42bbaffcc81169b35ff10cf4b43c119 Mon Sep 17 00:00:00 2001
 From: Mike Hance <mhance@gmail.com>
-Date: Tue, 6 Oct 2026 15:00:25 -0700
+Date: Tue, 3 Nov 2026 13:45:58 -0800
 Subject: [PATCH] use external fmt headers instead of spdlog bundled
 
 ---
@@ -32,7 +32,7 @@ index 1bc2999..877110f 100644
  namespace {
    auto logger = logging::make_log("Bdaq");
 diff --git a/src/libFelixClient/app/felix_client_bridge.cpp b/src/libFelixClient/app/felix_client_bridge.cpp
-index d601477..d9c1208 100644
+index 566797f..579371d 100644
 --- a/src/libFelixClient/app/felix_client_bridge.cpp
 +++ b/src/libFelixClient/app/felix_client_bridge.cpp
 @@ -15,7 +15,7 @@
@@ -58,7 +58,7 @@ index 113aab8..b12e525 100644
  #include "ScanHelper.h"
  #include "HwController.h"
 diff --git a/src/libRd53b/Rd53bAnalysis.cpp b/src/libRd53b/Rd53bAnalysis.cpp
-index 1e4bcfe..87f0ace 100644
+index b294fad..8c90242 100644
 --- a/src/libRd53b/Rd53bAnalysis.cpp
 +++ b/src/libRd53b/Rd53bAnalysis.cpp
 @@ -12,7 +12,7 @@
@@ -123,7 +123,7 @@ index ed8a891..606423d 100644
  #include "ScanHelper.h"
  #include "Bookkeeper.h"
 diff --git a/src/libStar/StarStrobeDelayAnalysis.cpp b/src/libStar/StarStrobeDelayAnalysis.cpp
-index 7eb7ce6..1d78efc 100644
+index 4c568c7..3da1f5e 100644
 --- a/src/libStar/StarStrobeDelayAnalysis.cpp
 +++ b/src/libStar/StarStrobeDelayAnalysis.cpp
 @@ -16,7 +16,7 @@
@@ -136,10 +136,10 @@ index 7eb7ce6..1d78efc 100644
  namespace {
      auto alog = logging::make_log("StarStrobeDelayAnalysis");
 diff --git a/src/libYarr/ScanHelper.cpp b/src/libYarr/ScanHelper.cpp
-index 58218fc..933d0ce 100644
+index 0b57d1f..94a2a2a 100644
 --- a/src/libYarr/ScanHelper.cpp
 +++ b/src/libYarr/ScanHelper.cpp
-@@ -32,7 +32,7 @@ namespace fs = std::filesystem;
+@@ -33,7 +33,7 @@ namespace fs = std::filesystem;
  
  #include "logging.h"
  #include "LoggingConfig.h"
@@ -149,7 +149,7 @@ index 58218fc..933d0ce 100644
  #include "ScanOpts.h"
  
 diff --git a/src/libYarr/StdAnalysis.cpp b/src/libYarr/StdAnalysis.cpp
-index f6e63da..6a7228b 100644
+index 30bc361..87dff6b 100644
 --- a/src/libYarr/StdAnalysis.cpp
 +++ b/src/libYarr/StdAnalysis.cpp
 @@ -21,7 +21,7 @@
@@ -162,7 +162,7 @@ index f6e63da..6a7228b 100644
  namespace {
      auto alog = logging::make_log("StdAnalysis");
 diff --git a/src/libYarr/StdDataLoop.cpp b/src/libYarr/StdDataLoop.cpp
-index 52ed473..537e503 100644
+index 8686e6c..1ca9ebc 100644
 --- a/src/libYarr/StdDataLoop.cpp
 +++ b/src/libYarr/StdDataLoop.cpp
 @@ -18,7 +18,7 @@
